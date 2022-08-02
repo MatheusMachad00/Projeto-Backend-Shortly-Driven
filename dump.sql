@@ -1,8 +1,8 @@
-CREATE TABLE "public.users" (
+CREATE TABLE "users" (
 	"id" serial NOT NULL,
 	"name" varchar(150) NOT NULL,
 	"email" varchar(100) NOT NULL UNIQUE,
-	"password" varchar(30) NOT NULL UNIQUE,
+	"password" varchar(100) NOT NULL UNIQUE,
 	CONSTRAINT "users_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -10,7 +10,7 @@ CREATE TABLE "public.users" (
 
 
 
-CREATE TABLE "public.tokens" (
+CREATE TABLE "tokens" (
 	"id" serial NOT NULL,
 	"userId" int NOT NULL,
 	"token" TEXT NOT NULL UNIQUE,
@@ -21,7 +21,7 @@ CREATE TABLE "public.tokens" (
 
 
 
-CREATE TABLE "public.url" (
+CREATE TABLE "url" (
 	"id" serial NOT NULL,
 	"userId" int NOT NULL,
 	"url" TEXT NOT NULL,
