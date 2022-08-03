@@ -21,13 +21,13 @@ CREATE TABLE "tokens" (
 
 
 
-CREATE TABLE "url" (
+CREATE TABLE "urls" (
 	"id" serial NOT NULL,
 	"userId" int NOT NULL,
 	"url" TEXT NOT NULL,
 	"shortUrl" TEXT NOT NULL,
-	"visitCount" int NOT NULL,
-	CONSTRAINT "url_pk" PRIMARY KEY ("id")
+	"visitCount" int NOT NULL DEFAULT '0',
+	CONSTRAINT "urls_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
 );
@@ -37,4 +37,7 @@ CREATE TABLE "url" (
 
 ALTER TABLE "tokens" ADD CONSTRAINT "tokens_fk0" FOREIGN KEY ("userId") REFERENCES "users"("id");
 
-ALTER TABLE "url" ADD CONSTRAINT "url_fk0" FOREIGN KEY ("userId") REFERENCES "users"("id");
+ALTER TABLE "urls" ADD CONSTRAINT "urls_fk0" FOREIGN KEY ("userId") REFERENCES "users"("id");
+
+
+

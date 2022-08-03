@@ -2,13 +2,15 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import chalk from 'chalk';
-import authRoute from "./routes/authRouter.js";
+import authRoute from './routes/authRouter.js';
+import urlRoute from './routes/urlRouter.js'
 
 dotenv.config();
 const app = express();
 app.use(cors(), express.json());
 
 app.use(authRoute);
+app.use(urlRoute)
 
 
 const PORT = process.env.PORT || 5001;
