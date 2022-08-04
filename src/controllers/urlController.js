@@ -1,6 +1,7 @@
 import connection from "../dbStrategy/postgres.js";
 import { nanoid } from 'nanoid';
 
+
 export async function createShortUrl(req, res) {
   const { url } = req.body;
   const { id } = res.locals.userId
@@ -54,6 +55,23 @@ export async function openShortUrl(req, res) {
     `, [data[0].id]);
 
     res.redirect(data[0].url);
+  } catch (error) {
+    res.sendStatus(500);
+    console.error(error);
+  }
+}
+
+export async function deleteUrl(req, res) {
+  const { id } = req.params;
+  const userId = res.locals.userId
+  console.log(id);
+
+  try {
+    const {rows: checkId} = await connection.query(`
+    select * from urls WHERE "userId" = $1 AND id = $2
+    `, [userId.id, id]);
+
+    res.send(checkId)
   } catch (error) {
     res.sendStatus(500);
     console.error(error);
