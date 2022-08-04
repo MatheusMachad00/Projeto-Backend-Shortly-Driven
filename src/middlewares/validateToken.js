@@ -9,7 +9,6 @@ export async function validateToken(req, res, next) {
   const checkToken = await connection.query(`
   SELECT token FROM tokens where token = ($1)`, [token]);
 
-
   if (checkToken.rows.length === 0) return res.sendStatus(404);
 
   const userId = await connection.query(`
