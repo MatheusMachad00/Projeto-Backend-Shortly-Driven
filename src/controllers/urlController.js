@@ -47,7 +47,7 @@ export async function openShortUrl(req, res) {
     const data = urlData.rows;
 
     if (urlData.rows.length === 0) {
-      return res.sendStatus(404).send();
+      return res.sendStatus(404);
     };
 
     await connection.query(`
@@ -64,14 +64,27 @@ export async function openShortUrl(req, res) {
 export async function deleteUrl(req, res) {
   const { id } = req.params;
   const userId = res.locals.userId
-  console.log(id);
 
   try {
+    const {rows: checkIfUrlExists} = await connection.query(`
+    SELECT * FROM urls WHERE id = $1`, [id]);
+
+    if (checkIfUrlExists.length === 0){
+      return res.sendStatus(404)
+    }
+
     const {rows: checkId} = await connection.query(`
-    select * from urls WHERE "userId" = $1 AND id = $2
+    SELECT * FROM urls WHERE "userId" = $1 AND id = $2
     `, [userId.id, id]);
 
-    res.send(checkId)
+    if (checkId.length === 0){
+      return res.sendStatus(401);
+    }
+
+    await connection.query(`
+    DELETE FROM urls WHERE id = $1`, [id])
+
+    res.sendStatus(204);
   } catch (error) {
     res.sendStatus(500);
     console.error(error);
