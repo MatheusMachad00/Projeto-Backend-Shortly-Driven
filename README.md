@@ -3,4 +3,4 @@
 #### This project is an API to an application that will shorten an url.
 
 #### Database schematic
-![alt text](https://uploaddeimagens.com.br/images/003/966/836/original/download_%281%29.png?1659466051)
+![alt text](https://uploaddeimagens.com.br/images/003/968/121/full/download_%282%29.png?1659553111)
