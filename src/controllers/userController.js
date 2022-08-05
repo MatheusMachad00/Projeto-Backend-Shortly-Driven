@@ -25,7 +25,7 @@ export async function getUserData (req, res){
       id: userData[0].id, 
       name: userData[0].name, 
       visitCount: userData[0].visitCount,
-      shortenedUrls: urlData});
+      shortenedUrls: urlData}).status(200);
 
   } catch (error) {
     res.sendStatus(500);
