@@ -1,0 +1,285 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 12.11 (Ubuntu 12.11-0ubuntu0.20.04.1)
+-- Dumped by pg_dump version 12.11 (Ubuntu 12.11-0ubuntu0.20.04.1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: tokens; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.tokens (
+    id integer NOT NULL,
+    "userId" integer NOT NULL,
+    token text NOT NULL
+);
+
+
+ALTER TABLE public.tokens OWNER TO postgres;
+
+--
+-- Name: tokens_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.tokens_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tokens_id_seq OWNER TO postgres;
+
+--
+-- Name: tokens_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.tokens_id_seq OWNED BY public.tokens.id;
+
+
+--
+-- Name: urls; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.urls (
+    id integer NOT NULL,
+    "userId" integer NOT NULL,
+    url text NOT NULL,
+    "shortUrl" text NOT NULL,
+    "visitCount" integer DEFAULT 0 NOT NULL
+);
+
+
+ALTER TABLE public.urls OWNER TO postgres;
+
+--
+-- Name: urls_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.urls_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.urls_id_seq OWNER TO postgres;
+
+--
+-- Name: urls_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.urls_id_seq OWNED BY public.urls.id;
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.users (
+    id integer NOT NULL,
+    name character varying(150) NOT NULL,
+    email character varying(100) NOT NULL,
+    password character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.users OWNER TO postgres;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.users_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_id_seq OWNER TO postgres;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
+-- Name: tokens id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.tokens ALTER COLUMN id SET DEFAULT nextval('public.tokens_id_seq'::regclass);
+
+
+--
+-- Name: urls id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.urls ALTER COLUMN id SET DEFAULT nextval('public.urls_id_seq'::regclass);
+
+
+--
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- Data for Name: tokens; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.tokens (id, "userId", token) FROM stdin;
+13	7	49a86b78-14ad-469e-8c97-016fd02a7fd6
+14	8	01a609d2-ea77-44c1-ae9b-aacde7e425db
+15	9	4dde8aaa-5c48-42f4-95a9-622a0326f04f
+17	6	c1b3d651-f729-4763-ac70-d629a77d85b2
+18	10	218a0c57-1bb0-4a55-a487-3c9f14ac2cab
+\.
+
+
+--
+-- Data for Name: urls; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.urls (id, "userId", url, "shortUrl", "visitCount") FROM stdin;
+15	9	https://ovicio.com.br/wp-content/uploads/2021/12/20211215-jotaro-summons-star-platinum-in-jojos-bizarre-adventure.jpeg	cOdv34nX	2
+16	9	https://i.pinimg.com/736x/c6/b7/2f/c6b72fbeafc0cb6b6b25f5fbf4921748.jpg	TYg3nFLd	1
+17	6	https://popularanime.com.br/wp-content/uploads/2022/05/albedo.jpg	GN1BPz1r	3
+7	6	https://github.com/	5p_4h7PT	0
+18	6	https://c.tenor.com/YMZ7DvHPW00AAAAC/albedo-albedo-overlord.gif	EvEiEl4p	5
+19	10	https://static1.purebreak.com.br/articles/9/10/42/29/@/442929-dio-brando-e-um-vilao-bisexual-de-jojo-opengraph_1200-1.png	w_iKe2-p	0
+20	10	https://i.ytimg.com/vi/b1kd8qe6Ni4/maxresdefault.jpg	A-F5lMqa	1
+9	7	https://nntheblog.b-cdn.net/wp-content/uploads/2022/07/Nazuna-Nanakusa.jpg	JKOnDKb3	3
+11	7	https://nntheblog.b-cdn.net/wp-content/uploads/2022/07/Nazuna-Nanakusa.jpg	mxLx4Utx	2
+12	8	https://criticalhits.com.br/wp-content/uploads/2022/03/Kitagawa.Marin_.full_.3557722-768x483.jpg	50wO0p1m	5
+13	8	https://i0.wp.com/www.jbox.com.br/wp/wp-content/uploads/2022/02/marin-kitagawa-bisque-doll-destacada.jpg?resize=768%2C485&quality=99&strip=all&ssl=1	TekWgTFE	7
+\.
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.users (id, name, email, password) FROM stdin;
+6	Albedo	albedo@gmail.com	$2b$10$aQ/tb0kdW9rdmnARE5.fB.LfO5k.d61dQP/KGE3l3/8TR/MxjWCea
+7	Nazuna Nanakusa	nazuna@gmail.com	$2b$10$BjmbooAfqLrCGLunT9VKRe3uyeEZj/jQijgZ6es0jnZvjvQYm8dmO
+8	Marin Kitagawa	marin@gmail.com	$2b$10$NglEqaXJybpuofqZhyKtgeq.EyHSry1uaGirU3Z.o8fLvpk1ycOpu
+9	Jotaro Kujo	jotaro@gmail.com	$2b$10$W9B8shw8iuNhfYg.L4JteeK2tEKVpsTDa/sloyMpceuoSeCY.YPN6
+10	Dio Brando	Dio@gmail.com	$2b$10$XQwnjpczJ1ychkz4Lb5esu6z58fZdr6WziYN2oCo4LCavTETZS8lO
+\.
+
+
+--
+-- Name: tokens_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.tokens_id_seq', 18, true);
+
+
+--
+-- Name: urls_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.urls_id_seq', 20, true);
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 10, true);
+
+
+--
+-- Name: tokens tokens_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.tokens
+    ADD CONSTRAINT tokens_pk PRIMARY KEY (id);
+
+
+--
+-- Name: tokens tokens_token_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.tokens
+    ADD CONSTRAINT tokens_token_key UNIQUE (token);
+
+
+--
+-- Name: urls urls_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.urls
+    ADD CONSTRAINT urls_pk PRIMARY KEY (id);
+
+
+--
+-- Name: users users_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_email_key UNIQUE (email);
+
+
+--
+-- Name: users users_password_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_password_key UNIQUE (password);
+
+
+--
+-- Name: users users_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pk PRIMARY KEY (id);
+
+
+--
+-- Name: tokens tokens_fk0; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.tokens
+    ADD CONSTRAINT tokens_fk0 FOREIGN KEY ("userId") REFERENCES public.users(id);
+
+
+--
+-- Name: urls urls_fk0; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.urls
+    ADD CONSTRAINT urls_fk0 FOREIGN KEY ("userId") REFERENCES public.users(id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
